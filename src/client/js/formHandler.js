@@ -1,4 +1,5 @@
 
+// BOILER PLATE CODE PROVIDED BY UDACITY WARNING COULD BE SIMILAR TO OTHER STUDENTS.
 function handleSubmit(event) {
     event.preventDefault()
     let url = document.getElementById('name').value;
@@ -6,6 +7,9 @@ function handleSubmit(event) {
         url
     }
     if (Client.urlChecker(url)) {
+        // BOILER PLATE FETCH AS RECOMMENDED BY UDACITY WARNING COULD BE SIMILAR TO OTHER STUDENTS.
+        document.getElementById('name').style.border = "1px solid green";
+        // Fetch calls the post url on the express server.
         fetch('/url', {
             method: 'POST',
             credentials: 'same-origin',
@@ -16,12 +20,17 @@ function handleSubmit(event) {
         })
             .then(res => res.json())
             .then(function (res) {
-                document.getElementById('score').innerHTML = 'Score: ' + res.score_tag;
-                document.getElementById('agree').innerHTML = 'Agreement: ' + res.agreement;
-                document.getElementById('irony').innerHTML = 'Irony: ' + res.irony;
+                const list = document.getElementById("list")
+                const li = document.createElement("li")
+                li.innerText = res.agreement
+                list.appendChild(li)
             })
     } else {
-        alert('You have not entered a valid URL.');
+        document.getElementById('name').style.border = "1px solid red";
+        const p = document.createElement("p")
+        p.innerText = "Enter a valid url"
+        const form = document.getElementsByTagName("form")[0]
+        form.appendChild(p)
     };
 }
 
