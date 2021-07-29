@@ -10,7 +10,7 @@ function handleSubmit(event) {
         // BOILER PLATE FETCH AS RECOMMENDED BY UDACITY WARNING COULD BE SIMILAR TO OTHER STUDENTS.
         document.getElementById('name').style.border = "1px solid green";
         // Fetch calls the post url on the express server.
-        fetch('/url', {
+        fetch('http://localhost:8080/url', {
             method: 'POST',
             credentials: 'same-origin',
             headers: {
