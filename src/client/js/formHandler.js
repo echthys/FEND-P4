@@ -20,10 +20,13 @@ function handleSubmit(event) {
         })
             .then(res => res.json())
             .then(function (res) {
+                const requiredResponseValues = ["confidence", "agreement", "score_tag", "subjectivity", "irony"]
                 const list = document.getElementById("list")
-                const li = document.createElement("li")
-                li.innerText = res.agreement
-                list.appendChild(li)
+                for (const val of requiredResponseValues) {
+                    const li = document.createElement("li")
+                    li.innerText = `${val}: ${res[val]}`
+                    list.appendChild(li)
+                }
             })
     } else {
         document.getElementById('name').style.border = "1px solid red";
